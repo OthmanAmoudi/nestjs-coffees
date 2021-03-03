@@ -1,3 +1,4 @@
+import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
 import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
@@ -25,8 +26,8 @@ export class CoffeesService {
     return coffee;
   }
 
-  create(createCoffeeDto: any) {
-    this.coffees.push(createCoffeeDto);
+  create(createCoffeeDto: CreateCoffeeDto) {
+    this.coffees.push({ ...createCoffeeDto, id: Math.random() });
     return this.coffees;
   }
 
