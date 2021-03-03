@@ -1,5 +1,6 @@
 import { Coffee } from './entities/coffee.entity';
 import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
+import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
 @Injectable()
 export class CoffeesService {
@@ -29,7 +30,7 @@ export class CoffeesService {
     return this.coffees;
   }
 
-  update(id: number, updateCoffeeDto) {
+  update(id: number, updateCoffeeDto: UpdateCoffeeDto) {
     const coffee = this.findOne(id);
     if (coffee) {
       //update
