@@ -1,3 +1,4 @@
+import { PaginationQueryDto } from './../common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
 import {
   Delete,
@@ -16,10 +17,8 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 export class CoffeesController {
   constructor(private readonly coffeeService: CoffeesService) {}
   @Get()
-  finalAll(@Query() pagination) {
-    // const { limit, offset } = pagination;
-    // return `this action returns all coffees limit: ${limit}, offest: ${offset}`;
-    return this.coffeeService.findAll();
+  finalAll(@Query() pagination: PaginationQueryDto) {
+    return this.coffeeService.findAll(pagination);
   }
 
   @Get(':id')
@@ -41,7 +40,7 @@ export class CoffeesController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
     return this.coffeeService.remove(id);
   }
 }
